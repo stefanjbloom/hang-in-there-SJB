@@ -1,6 +1,12 @@
 // query selector variables go here 👇
+var posterImage = document.querySelector('.poster-img');
+var posterTitle = document.querySelector('.poster-title');
+var posterQuote = document.querySelector('.poster-quote');
+var posterButton = document.querySelector('.show-random')
 
-// we've provided you with some data to work with 👇
+// we want to call the  getRandomIndex function here
+
+// we've provided you with some data to work with 
 // tip: you can tuck this data out of view with the dropdown found near the line number where the variable is declared 
 var images = [
   "./assets/bees.jpg",
@@ -103,6 +109,7 @@ var savedPosters = [];
 var currentPoster;
 
 // event listeners go here 👇
+window.addEventListener('load', getRandomPoster);
 
 // functions and event handlers go here 👇
 // (we've provided two to get you started)!
@@ -117,3 +124,15 @@ function createPoster(imageURL, title, quote) {
     title: title, 
     quote: quote}
 }
+
+function getRandomPoster() {
+  var randomImage = images[getRandomIndex(images)];
+  var randomTitle = titles[getRandomIndex(titles)];
+  var randomQuote = quotes[getRandomIndex(quotes)];
+
+  posterImage.src = randomImage;
+  posterQuote.innerText = randomTitle;
+  posterTitle.innerText = randomQuote;
+}
+
+// console.log(getRandomIndex(images))
