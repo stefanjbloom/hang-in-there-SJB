@@ -2,7 +2,7 @@
 var posterImage = document.querySelector('.poster-img');
 var posterTitle = document.querySelector('.poster-title');
 var posterQuote = document.querySelector('.poster-quote');
-var posterButton = document.querySelector('.show-random')
+var posterButton = document.querySelector('.show-random');
 
 // we want to call the  getRandomIndex function here
 
@@ -110,6 +110,7 @@ var currentPoster;
 
 // event listeners go here 👇
 window.addEventListener('load', getRandomPoster);
+posterButton.addEventListener('click', getRandomPoster);
 
 // functions and event handlers go here 👇
 // (we've provided two to get you started)!
@@ -134,5 +135,6 @@ function getRandomPoster() {
   posterQuote.innerText = randomTitle;
   posterTitle.innerText = randomQuote;
 }
+
 
 // console.log(getRandomIndex(images))

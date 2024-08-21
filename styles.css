@@ -45,7 +45,7 @@ button:hover {
   justify-content: center;
   margin: 20px auto;
   padding: 50px 20px;
-  width: 70%;
+  width: 80%;
 }
 
 .poster-img {
@@ -61,12 +61,12 @@ button:hover {
   width: 90%;
 }
 
-.poster-title {
+.poster-quote {
   font-size: 60px;
   font-weight: normal;
   letter-spacing: 20px;
   margin-bottom: 10px;
-  text-transform: uppercase;
+  text-transform: capitalize;
 }
 
 .main-poster button {
