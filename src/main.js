@@ -145,6 +145,12 @@ showPosterButton.addEventListener('click', function(event){
   quotes.push(currentPoster.quote);
   titles.push(currentPoster.title);
 
+  posterImage.src = currentPoster.imageURL;
+  posterTitle.innerText = currentPoster.title;
+  posterQuote.innerText = currentPoster.quote;
+
+  poster.classList.remove('hidden');
+  makePosterForm.classList.add('hidden');
 });
 
 // functions and event handlers go here 
