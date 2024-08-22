@@ -1,13 +1,9 @@
-// query selector variables go here 👇
+var poster = document.querySelector('.poster')
 var posterImage = document.querySelector('.poster-img');
 var posterTitle = document.querySelector('.poster-title');
 var posterQuote = document.querySelector('.poster-quote');
 var posterButton = document.querySelector('.show-random');
-
-// we want to call the  getRandomIndex function here
-
-// we've provided you with some data to work with 
-// tip: you can tuck this data out of view with the dropdown found near the line number where the variable is declared 
+var makePosterButton = document.querySelector('.show-form');
 var images = [
   "./assets/bees.jpg",
   "./assets/bridge.jpg",
@@ -108,9 +104,12 @@ var quotes = [
 var savedPosters = [];
 var currentPoster;
 
-// event listeners go here 👇
 window.addEventListener('load', getRandomPoster);
 posterButton.addEventListener('click', getRandomPoster);
+makePosterButton.addEventListener('click', function(){
+  poster.classList.add('.hidden');
+  poster.classList.remove('.hidden')
+});
 
 // functions and event handlers go here 👇
 // (we've provided two to get you started)!
@@ -132,9 +131,18 @@ function getRandomPoster() {
   var randomQuote = quotes[getRandomIndex(quotes)];
 
   posterImage.src = randomImage;
-  posterQuote.innerText = randomTitle;
-  posterTitle.innerText = randomQuote;
+  posterQuote.innerText = randomQuote;
+  posterTitle.innerText = randomTitle;
 }
 
+function makeYourPoster() {
+  var createPoster = createPoster()
+}
+// }
+// When a user clicks the “Make Your Own Poster” button, we should see the form, and the main poster should be hidden
+// When a user clicks the “Show Saved Posters” button, we should see the saved posters area, and the main poster should be hidden
+// When a user clicks the “Nevermind, take me back!” or “Back to Main” buttons, we should only see the main poster section
+// In summary: Be able to switch between the three views (main poster, form, and saved posters) on the correct button clicks
+// Hint: We aren’t actually navigating different pages of a website here. Instead, we will fake that navigation by hiding and unhiding entire sections. Go check out the HTML and CSS files to see how the form and saved posters sections are being hidden in the first place.
 
-// console.log(getRandomIndex(images))
+// Consider how you might use arguments/parameters to make dynamic reusable functions to control what is shown/hidden.
