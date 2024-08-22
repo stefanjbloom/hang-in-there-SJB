@@ -96,21 +96,31 @@ var quotes = [
   "A champion is defined not by their wins but by how they can recover when they fall."
 ];
 var savedPosters = [];
-var currentPoster;
 var posterImage = document.querySelector('.poster-img');
 var posterTitle = document.querySelector('.poster-title');
 var posterQuote = document.querySelector('.poster-quote');
+
 var posterButton = document.querySelector('.show-random');
+
 var poster = document.querySelector('.main-poster');
 var makePosterButton = document.querySelector('.show-form');
 var makePosterForm = document.querySelector('.poster-form');
 var showSavedButton = document.querySelector('.show-saved');
 var showSavedPosters = document.querySelector('.saved-posters');
-var neverMindMain = document.querySelector('.show-main')
-var backToMain = document.querySelector('.back-to-main')
+var neverMindMain = document.querySelector('.show-main');
+var backToMain = document.querySelector('.back-to-main');
 
+var showPosterButton = document.querySelector('.make-poster');
+var showPosterURL = document.querySelector('#poster-image-url')
+var showPosterTitle = document.querySelector('#poster-title')
+var showPosterQuote = document.querySelector('#poster-quote')
+var currentPoster;
+
+// Event Listeners //
 window.addEventListener('load', getRandomPoster);
+
 posterButton.addEventListener('click', getRandomPoster);
+
 makePosterButton.addEventListener('click', function() {
   poster.classList.toggle('hidden');
   makePosterForm.classList.toggle('hidden');
@@ -122,16 +132,32 @@ showSavedButton.addEventListener('click', function() {
 neverMindMain.addEventListener('click', function() {
   poster.classList.toggle('hidden');
   makePosterForm.classList.toggle('hidden');
-})
-backToMain.addEventListener('click', function(){
+});
+backToMain.addEventListener('click', function() {
   poster.classList.toggle('hidden');
   showSavedPosters.classList.toggle('hidden');
-})
-// functions and event handlers go here 👇
+});
+showPosterButton.addEventListener('click', function(event){
+  event.preventDefault();
+  currentPoster = createPoster(showPosterURL.value, showPosterTitle.value, showPosterQuote.value);
+  
+  images.push(currentPoster.imageURL);
+  quotes.push(currentPoster.quote);
+  titles.push(currentPoster.title);
+
+  posterImage.src = currentPoster.imageURL;
+  posterTitle.innerText = currentPoster.title;
+  posterQuote.innerText = currentPoster.quote;
+
+  poster.classList.remove('hidden');
+  makePosterForm.classList.add('hidden');
+});
+
+// functions and event handlers go here 
 // (we've provided two to get you started)!
 function getRandomIndex(array) {
   return Math.floor(Math.random() * array.length);
-}
+};
 
 function createPoster(imageURL, title, quote) {
   return {
@@ -139,7 +165,7 @@ function createPoster(imageURL, title, quote) {
     imageURL: imageURL, 
     title: title, 
     quote: quote}
-}
+};
 
 function getRandomPoster() {
   var randomImage = images[getRandomIndex(images)];
@@ -149,4 +175,4 @@ function getRandomPoster() {
   posterImage.src = randomImage;
   posterQuote.innerText = randomQuote;
   posterTitle.innerText = randomTitle;
-}
+};
