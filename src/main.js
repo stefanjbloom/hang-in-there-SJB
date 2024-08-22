@@ -140,6 +140,10 @@ backToMain.addEventListener('click', function() {
 showPosterButton.addEventListener('click', function(event){
   event.preventDefault();
   currentPoster = createPoster(showPosterURL.value, showPosterTitle.value, showPosterQuote.value);
+  
+  images.push(currentPoster.imageURL);
+  quotes.push(currentPoster.quote);
+  titles.push(currentPoster.title);
 
 });
 
