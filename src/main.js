@@ -96,19 +96,27 @@ var quotes = [
   "A champion is defined not by their wins but by how they can recover when they fall."
 ];
 var savedPosters = [];
-var currentPoster;
 var posterImage = document.querySelector('.poster-img');
 var posterTitle = document.querySelector('.poster-title');
 var posterQuote = document.querySelector('.poster-quote');
+
 var posterButton = document.querySelector('.show-random');
+
 var poster = document.querySelector('.main-poster');
 var makePosterButton = document.querySelector('.show-form');
 var makePosterForm = document.querySelector('.poster-form');
 var showSavedButton = document.querySelector('.show-saved');
 var showSavedPosters = document.querySelector('.saved-posters');
-var neverMindMain = document.querySelector('.show-main')
-var backToMain = document.querySelector('.back-to-main')
+var neverMindMain = document.querySelector('.show-main');
+var backToMain = document.querySelector('.back-to-main');
 
+var showPosterButton = document.querySelector('.make-poster');
+var showPosterURL = document.querySelector('#poster-image-url')
+var showPosterTitle = document.querySelector('#poster-title')
+var showPosterQuote = document.querySelector('#poster-quote')
+var currentPoster;
+
+// Event Listeners //
 window.addEventListener('load', getRandomPoster);
 
 posterButton.addEventListener('click', getRandomPoster);
@@ -124,16 +132,22 @@ showSavedButton.addEventListener('click', function() {
 neverMindMain.addEventListener('click', function() {
   poster.classList.toggle('hidden');
   makePosterForm.classList.toggle('hidden');
-})
+});
 backToMain.addEventListener('click', function() {
   poster.classList.toggle('hidden');
   showSavedPosters.classList.toggle('hidden');
-})
-// functions and event handlers go here 👇
+});
+showPosterButton.addEventListener('click', function(event){
+  event.preventDefault();
+  currentPoster = createPoster(showPosterURL.value, showPosterTitle.value, showPosterQuote.value);
+
+});
+
+// functions and event handlers go here 
 // (we've provided two to get you started)!
 function getRandomIndex(array) {
   return Math.floor(Math.random() * array.length);
-}
+};
 
 function createPoster(imageURL, title, quote) {
   return {
@@ -141,7 +155,7 @@ function createPoster(imageURL, title, quote) {
     imageURL: imageURL, 
     title: title, 
     quote: quote}
-}
+};
 
 function getRandomPoster() {
   var randomImage = images[getRandomIndex(images)];
@@ -151,23 +165,4 @@ function getRandomPoster() {
   posterImage.src = randomImage;
   posterQuote.innerText = randomQuote;
   posterTitle.innerText = randomTitle;
-}
-// On the new poster form view, users should be able to fill out the 
-// three input fields and then hit the Show My Poster button
-
-// When the Show My Poster button is clicked, several things will happen:
-
-// First, use the values from the inputs to create a new, unique poster 
-// object and save it as the value of the var currentPoster global variable (part of your data model)
-
-// Save the submitted data into the respective arrays 
-// (image URL into the images array, etc - all part of your data model) 
-// so that future random posters can use the user-created data
-
-// Change back to the main poster view (hiding the form view again)
-
-// Use the new, unique poster object (which should be saved in the currentPoster variable 
-// - part of your data model) to display the newly created poster image, title, and quote in the main view on the DOM
-
-// Hint: Notice something weird happening when you click the button to submit the form? 
-// Try googling event.preventDefault()!
+};
