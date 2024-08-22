@@ -1,9 +1,3 @@
-var poster = document.querySelector('.poster')
-var posterImage = document.querySelector('.poster-img');
-var posterTitle = document.querySelector('.poster-title');
-var posterQuote = document.querySelector('.poster-quote');
-var posterButton = document.querySelector('.show-random');
-var makePosterButton = document.querySelector('.show-form');
 var images = [
   "./assets/bees.jpg",
   "./assets/bridge.jpg",
@@ -103,12 +97,27 @@ var quotes = [
 ];
 var savedPosters = [];
 var currentPoster;
+var posterImage = document.querySelector('.poster-img');
+var posterTitle = document.querySelector('.poster-title');
+var posterQuote = document.querySelector('.poster-quote');
+var posterButton = document.querySelector('.show-random');
+var poster = document.querySelector('.main-poster');
+var makePosterButton = document.querySelector('.show-form');
+var makePosterForm = document.querySelector('.poster-form');
+var showSavedButton = document.querySelector('.show-saved');
+var showSavedPosters = document.querySelector('.saved-posters');
+// // When a user clicks the “Show Saved Posters” button, 
+// we should see the saved posters area, and the main poster should be hidden
 
 window.addEventListener('load', getRandomPoster);
 posterButton.addEventListener('click', getRandomPoster);
-makePosterButton.addEventListener('click', function(){
-  poster.classList.add('.hidden');
-  poster.classList.remove('.hidden')
+makePosterButton.addEventListener('click', function() {
+  poster.classList.toggle('hidden');
+  makePosterForm.classList.toggle('hidden');
+});
+showSavedButton.addEventListener('click', function() {
+  poster.classList.toggle('hidden');
+  showSavedPosters.classList.toggle('hidden');
 });
 
 // functions and event handlers go here 👇
@@ -135,12 +144,16 @@ function getRandomPoster() {
   posterTitle.innerText = randomTitle;
 }
 
-function makeYourPoster() {
-  var createPoster = createPoster()
-}
+// function makeYourPoster() {
+//   var createPoster = createPoster()
 // }
-// When a user clicks the “Make Your Own Poster” button, we should see the form, and the main poster should be hidden
-// When a user clicks the “Show Saved Posters” button, we should see the saved posters area, and the main poster should be hidden
+// // }
+// When a user clicks the “Make Your Own Poster” button, 
+//  we should see the form, and the main poster should be hidden
+
+// When a user clicks the “Show Saved Posters” button, 
+// we should see the saved posters area, and the main poster should be hidden
+
 // When a user clicks the “Nevermind, take me back!” or “Back to Main” buttons, we should only see the main poster section
 // In summary: Be able to switch between the three views (main poster, form, and saved posters) on the correct button clicks
 // Hint: We aren’t actually navigating different pages of a website here. Instead, we will fake that navigation by hiding and unhiding entire sections. Go check out the HTML and CSS files to see how the form and saved posters sections are being hidden in the first place.
