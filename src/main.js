@@ -96,21 +96,26 @@ var quotes = [
   "A champion is defined not by their wins but by how they can recover when they fall."
 ];
 var savedPosters = [];
+
+// ~!Query Selectors!~ //
+// Main Poster Selectors//
+var displayedPoster = document.querySelector('.poster')
+var poster = document.querySelector('.main-poster');
 var posterImage = document.querySelector('.poster-img');
 var posterTitle = document.querySelector('.poster-title');
 var posterQuote = document.querySelector('.poster-quote');
-
+// Buttons//
 var posterButton = document.querySelector('.show-random');
-
-var poster = document.querySelector('.main-poster');
 var makePosterButton = document.querySelector('.show-form');
-var makePosterForm = document.querySelector('.poster-form');
 var showSavedButton = document.querySelector('.show-saved');
-var showSavedPosters = document.querySelector('.saved-posters');
-var neverMindMain = document.querySelector('.show-main');
-var backToMain = document.querySelector('.back-to-main');
-
 var showPosterButton = document.querySelector('.make-poster');
+var savePosterButton = document.querySelector('.save-poster')
+var backToMain = document.querySelector('.back-to-main');
+var neverMindMain = document.querySelector('.show-main');
+// Hiddens//
+var makePosterForm = document.querySelector('.poster-form');
+var showSavedPosters = document.querySelector('.saved-posters');
+// Form Fields//
 var showPosterURL = document.querySelector('#poster-image-url')
 var showPosterTitle = document.querySelector('#poster-title')
 var showPosterQuote = document.querySelector('#poster-quote')
@@ -152,13 +157,22 @@ showPosterButton.addEventListener('click', function(event){
   poster.classList.remove('hidden');
   makePosterForm.classList.add('hidden');
 });
+savePosterButton.addEventListener('click', function(){
+  if (savedPosters.includes(displayedPoster)) {
+    alert("Duplicates aren't saved, please make another poster!");
+  } else {
+    savedPosters.push(displayedPoster);
+    alert("Saved!");
+  }
+});
+// showsaved.addEventListener('click', function(){
 
+// })
 // functions and event handlers go here 
 // (we've provided two to get you started)!
 function getRandomIndex(array) {
   return Math.floor(Math.random() * array.length);
 };
-
 function createPoster(imageURL, title, quote) {
   return {
     id: Date.now(), 
@@ -166,7 +180,6 @@ function createPoster(imageURL, title, quote) {
     title: title, 
     quote: quote}
 };
-
 function getRandomPoster() {
   var randomImage = images[getRandomIndex(images)];
   var randomTitle = titles[getRandomIndex(titles)];
