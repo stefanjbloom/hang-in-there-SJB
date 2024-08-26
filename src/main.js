@@ -234,10 +234,12 @@ var showPosterButton = document.querySelector('.make-poster');
 var savePosterButton = document.querySelector('.save-poster')
 var backToMain = document.querySelector('.back-to-main');
 var neverMindMain = document.querySelector('.show-main');
+var unmotivationalButton = document.querySelector('.show-unmotivational')
 // Hiddens//
 var makePosterForm = document.querySelector('.poster-form');
 var showSavedPosters = document.querySelector('.saved-posters');
 var savedPostersGrid = document.querySelector('.saved-posters-grid')
+var unmotivationalPostersGrid = document.querySelector('.unmotivational-posters')
 // Form Fields//
 var showPosterURL = document.querySelector('#poster-image-url')
 var showPosterTitle = document.querySelector('#poster-title')
@@ -245,9 +247,12 @@ var showPosterQuote = document.querySelector('#poster-quote')
 
 // Event Listeners //
 window.addEventListener('load', getRandomPoster);
-
+// WORKING ON TOGGLING THE UNMOTIVATIONAL
 posterButton.addEventListener('click', getRandomPoster);
-
+unmotivationalButton.addEventListener('click', function(){
+  poster.classList.toggle('hidden');
+  unmotivationalPostersGrid.classList.toggle('hidden')
+});
 makePosterButton.addEventListener('click', function() {
   poster.classList.toggle('hidden');
   makePosterForm.classList.toggle('hidden');
