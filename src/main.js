@@ -96,6 +96,7 @@ var quotes = [
   "A champion is defined not by their wins but by how they can recover when they fall."
 ];
 var savedPosters = [];
+var currentPoster;
 
 // ~!Query Selectors!~ //
 // Main Poster Selectors//
@@ -119,7 +120,6 @@ var showSavedPosters = document.querySelector('.saved-posters');
 var showPosterURL = document.querySelector('#poster-image-url')
 var showPosterTitle = document.querySelector('#poster-title')
 var showPosterQuote = document.querySelector('#poster-quote')
-var currentPoster;
 
 // Event Listeners //
 window.addEventListener('load', getRandomPoster);
@@ -158,18 +158,19 @@ showPosterButton.addEventListener('click', function(event){
   makePosterForm.classList.add('hidden');
 });
 savePosterButton.addEventListener('click', function(){
-  if (savedPosters.includes(displayedPoster)) {
-    alert("Duplicates aren't saved, please make another poster!");
-  } else {
-    savedPosters.push(displayedPoster);
-    alert("Saved!");
-  }
+  saveCurrentPoster();
 });
-// showsaved.addEventListener('click', function(){
 
-// })
-// functions and event handlers go here 
-// (we've provided two to get you started)!
+// If a user clicks the “Save This Poster” more than once on a single poster, 
+// it will still only be saved once (no duplicates)
+
+// When a user clicks the “Show Saved Posters” button
+// we should see the saved posters section
+
+// All the posters in the savedPosters array should be 
+// displayed in the saved posters grid section (again, no duplicates)
+
+// #Functions and Event Handlers!//
 function getRandomIndex(array) {
   return Math.floor(Math.random() * array.length);
 };
@@ -185,7 +186,17 @@ function getRandomPoster() {
   var randomTitle = titles[getRandomIndex(titles)];
   var randomQuote = quotes[getRandomIndex(quotes)];
 
+  currentPoster = createPoster(randomImage, randomTitle, randomQuote)
+
   posterImage.src = randomImage;
   posterQuote.innerText = randomQuote;
   posterTitle.innerText = randomTitle;
 };
+function saveCurrentPoster() {
+  var noDuplicates = savedPosters.some(function(poster) {
+    return poster.id === currentPoster.id;
+  });
+  if (!noDuplicates) {
+    savedPosters.push(currentPoster);
+  }
+}
