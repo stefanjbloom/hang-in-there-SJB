@@ -116,6 +116,7 @@ var neverMindMain = document.querySelector('.show-main');
 // Hiddens//
 var makePosterForm = document.querySelector('.poster-form');
 var showSavedPosters = document.querySelector('.saved-posters');
+var savedPostersGrid = document.querySelector('.saved-posters-grid')
 // Form Fields//
 var showPosterURL = document.querySelector('#poster-image-url')
 var showPosterTitle = document.querySelector('#poster-title')
@@ -132,7 +133,8 @@ makePosterButton.addEventListener('click', function() {
 });
 showSavedButton.addEventListener('click', function() {
   poster.classList.toggle('hidden');
-  showSavedPosters.classList.toggle('hidden');
+  showSavedPosters.classList.remove('hidden');
+  displaySavedPosters();
 });
 neverMindMain.addEventListener('click', function() {
   poster.classList.toggle('hidden');
@@ -160,9 +162,6 @@ showPosterButton.addEventListener('click', function(event){
 savePosterButton.addEventListener('click', function(){
   saveCurrentPoster();
 });
-
-// If a user clicks the “Save This Poster” more than once on a single poster, 
-// it will still only be saved once (no duplicates)
 
 // When a user clicks the “Show Saved Posters” button
 // we should see the saved posters section
@@ -199,4 +198,18 @@ function saveCurrentPoster() {
   if (!noDuplicates) {
     savedPosters.push(currentPoster);
   }
+}
+function displaySavedPosters() {
+  savedPostersGrid.innerHTML = '';
+  savedPosters.forEach(function(poster){
+    var miniPoster = document.createElement('div');
+    miniPoster.classList.add('mini-poster');
+
+    miniPoster.innerHTML = `
+      <img src="${poster.imageURL}" class="mini-poster-img">
+      <h2 class="mini-poster-title">${poster.title}</h2>
+      <h4 class="mini-poster-quote">${poster.quote}</h4>
+    `;
+    savedPostersGrid.appendChild(miniPoster);
+  });
 }
