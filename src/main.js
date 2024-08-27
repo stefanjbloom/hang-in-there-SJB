@@ -217,6 +217,8 @@ const unmotivationalPosters = [
     img_url: "./assets/doubt.jpg",
   }
 ];
+// Our posters only have, and only need, an id, imageURL, title and quote.
+// so we only need name:, img_url: and description:. map/delete?
 var savedPosters = [];
 var currentPoster;
 // ~!Query Selectors!~ //
@@ -232,9 +234,10 @@ var makePosterButton = document.querySelector('.show-form');
 var showSavedButton = document.querySelector('.show-saved');
 var showPosterButton = document.querySelector('.make-poster');
 var savePosterButton = document.querySelector('.save-poster')
-var backToMain = document.querySelector('.back-to-main');
+var backToMain = document.querySelector('.back-to-main-saved');
 var neverMindMain = document.querySelector('.show-main');
 var unmotivationalButton = document.querySelector('.show-unmotivational')
+var backToMainUnmotivational = document.querySelector('.back-to-main-unmotivational')
 // Hiddens//
 var makePosterForm = document.querySelector('.poster-form');
 var showSavedPosters = document.querySelector('.saved-posters');
@@ -247,7 +250,6 @@ var showPosterQuote = document.querySelector('#poster-quote')
 
 // Event Listeners //
 window.addEventListener('load', getRandomPoster);
-// WORKING ON TOGGLING THE UNMOTIVATIONAL
 posterButton.addEventListener('click', getRandomPoster);
 unmotivationalButton.addEventListener('click', function(){
   poster.classList.toggle('hidden');
@@ -269,6 +271,10 @@ neverMindMain.addEventListener('click', function() {
 backToMain.addEventListener('click', function() {
   poster.classList.toggle('hidden');
   showSavedPosters.classList.toggle('hidden');
+});
+backToMainUnmotivational.addEventListener('click', function() {
+  poster.classList.toggle('hidden');
+  unmotivationalPostersGrid.classList.toggle('hidden');
 });
 showPosterButton.addEventListener('click', function(event){
   event.preventDefault();
@@ -331,4 +337,7 @@ function displaySavedPosters() {
     `;
     savedPostersGrid.appendChild(miniPoster);
   });
+}
+function cleanData() {
+  
 }
