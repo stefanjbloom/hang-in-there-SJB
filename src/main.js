@@ -253,7 +253,7 @@ posterButton.addEventListener('click', getRandomPoster);
 unmotivationalButton.addEventListener('click', function(){
   poster.classList.toggle('hidden');
   unmotivationalPostersGrid.classList.toggle('hidden')
-  cleanData(displayUnmotivationalPosters(unmotivationalPosters));
+  displayUnmotivationalPosters(cleanData(unmotivationalPosters));
 });
 makePosterButton.addEventListener('click', function() {
   poster.classList.toggle('hidden');
