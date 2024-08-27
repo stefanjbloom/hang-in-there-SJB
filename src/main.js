@@ -240,6 +240,7 @@ var backToMainUnmotivational = document.querySelector('.back-to-main-unmotivatio
 var makePosterForm = document.querySelector('.poster-form');
 var showSavedPosters = document.querySelector('.saved-posters');
 var savedPostersGrid = document.querySelector('.saved-posters-grid')
+var unmotivationalContainer = document.querySelector('.displayed-unmotivationals');
 var unmotivationalPostersGrid = document.querySelector('.unmotivational-posters')
 // Form Fields//
 var showPosterURL = document.querySelector('#poster-image-url')
@@ -348,16 +349,17 @@ function cleanData(posters) {
     })
 };
 function displayUnmotivationalPosters(cleanedPosters) {
-  unmotivationalPostersGrid.innerHTML = '';
+  unmotivationalContainer = document.querySelector('.displayed-unmotivationals');
+  unmotivationalContainer.innerHTML = '';
   cleanedPosters.forEach(function(poster) {
     var miniPoster = document.createElement('div');
-    miniPoster.classList.add('mini-poster');
+    miniPoster.classList.add('mini-unmotivational-poster');
 
     miniPoster.innerHTML = `
-      <img src="${poster.img_url}" class="mini-poster-img">
-      <h2 class="mini-poster-title">${poster.title}</h2>
-      <h4 class="mini-poster-description">${poster.description}</h4>
+      <img src="${poster.img_url}" class="mini-unmotivational-poster-img">
+      <h2 class="mini-unmotivational-poster-title">${poster.title}</h2>
+      <h4 class="mini-unmotivational-poster-description">${poster.description}</h4>
     `;
-    unmotivationalPostersGrid.appendChild(miniPoster)
+    unmotivationalContainer.appendChild(miniPoster)
   });
 };
