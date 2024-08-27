@@ -217,8 +217,6 @@ const unmotivationalPosters = [
     img_url: "./assets/doubt.jpg",
   }
 ];
-// Our posters only have, and only need, an id, imageURL, title and quote.
-// so we only need name:, img_url: and description:. map/delete?
 var savedPosters = [];
 var currentPoster;
 // ~!Query Selectors!~ //
@@ -250,10 +248,12 @@ var showPosterQuote = document.querySelector('#poster-quote')
 
 // Event Listeners //
 window.addEventListener('load', getRandomPoster);
+
 posterButton.addEventListener('click', getRandomPoster);
 unmotivationalButton.addEventListener('click', function(){
   poster.classList.toggle('hidden');
   unmotivationalPostersGrid.classList.toggle('hidden')
+  cleanData(displayUnmotivationalPosters(unmotivationalPosters));
 });
 makePosterButton.addEventListener('click', function() {
   poster.classList.toggle('hidden');
@@ -323,9 +323,9 @@ function saveCurrentPoster() {
   if (!noDuplicates) {
     savedPosters.push(currentPoster);
   }
-}
+};
 function displaySavedPosters() {
-  savedPostersGrid.innerHTML = '';
+  savedPostersGrid.innerHTML = ''; 
   savedPosters.forEach(function(poster){
     var miniPoster = document.createElement('div');
     miniPoster.classList.add('mini-poster');
@@ -337,7 +337,27 @@ function displaySavedPosters() {
     `;
     savedPostersGrid.appendChild(miniPoster);
   });
-}
-function cleanData() {
-  
-}
+};
+function cleanData(posters) {
+  return posters.map((poster) => {
+    return{
+      id: Date.now(),
+      img_url: poster.img_url,
+      title: poster.name,
+      description: poster.description}
+    })
+};
+function displayUnmotivationalPosters(cleanedPosters) {
+  unmotivationalPostersGrid.innerHTML = '';
+  cleanedPosters.forEach(function(poster) {
+    var miniPoster = document.createElement('div');
+    miniPoster.classList.add('mini-poster');
+
+    miniPoster.innerHTML = `
+      <img src="${poster.img_url}" class="mini-poster-img">
+      <h2 class="mini-poster-title">${poster.title}</h2>
+      <h4 class="mini-poster-description">${poster.description}</h4>
+    `;
+    unmotivationalPostersGrid.appendChild(miniPoster)
+  });
+};
