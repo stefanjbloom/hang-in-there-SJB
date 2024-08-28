@@ -248,6 +248,8 @@ var unmotivationalPostersGrid = document.querySelector('.unmotivational-posters'
 var showPosterURL = document.querySelector('#poster-image-url')
 var showPosterTitle = document.querySelector('#poster-title')
 var showPosterQuote = document.querySelector('#poster-quote')
+// Delete Poster//
+var deleteUnMotivationalPoster = document.querySelectorAll('.mini-unmotivational-poster')
 
 // ~~~~~Event Listeners~~~~~ //
 
@@ -306,6 +308,8 @@ showPosterButton.addEventListener('click', function(event){
 savePosterButton.addEventListener('click', function(){
   saveCurrentPoster();
 });
+// Double-click Mini Un-Motivational Poster//
+deleteUnMotivationalPoster.addEventListener('dblclick', function())
 
 // ~~~~~Functions~~~~~//
 
@@ -376,7 +380,10 @@ function displayUnmotivationalPosters(cleanedPosters) {
     unmotivationalContainer.appendChild(miniPoster)
   });
 };
-
+// gotta delete div.mini-unmotivational-poster
+// create an eventListener for the double click...
+// create a querySelector for that element...
+// create a function that deletes it from the array and removes it, then re-renders the updated DOM
 
 // From the unmotivational posters view, if a user double clicks a poster, it will be deleted
 // HTML onclick attributes should not be used in any HTML code - all functionality should be through JavaScript.
