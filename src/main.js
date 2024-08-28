@@ -219,7 +219,9 @@ const unmotivationalPosters = [
 ];
 var savedPosters = [];
 var currentPoster;
-// ~!Query Selectors!~ //
+
+// ~~~~~Query Selectors~~~~~ //
+
 // Main Poster Selectors//
 var displayedPoster = document.querySelector('.poster')
 var poster = document.querySelector('.main-poster');
@@ -246,29 +248,38 @@ var unmotivationalPostersGrid = document.querySelector('.unmotivational-posters'
 var showPosterURL = document.querySelector('#poster-image-url')
 var showPosterTitle = document.querySelector('#poster-title')
 var showPosterQuote = document.querySelector('#poster-quote')
+// Delete Poster//
+var deleteUnMotivationalPoster = document.querySelectorAll('.mini-unmotivational-poster')
 
-// Event Listeners //
+// ~~~~~Event Listeners~~~~~ //
+
+// Load Random Poster When Page Loads//
 window.addEventListener('load', getRandomPoster);
-
+// Generate Random Poster//
 posterButton.addEventListener('click', getRandomPoster);
+// Un-Motivational Poster Button//
 unmotivationalButton.addEventListener('click', function(){
   poster.classList.toggle('hidden');
   unmotivationalPostersGrid.classList.toggle('hidden')
   displayUnmotivationalPosters(cleanData(unmotivationalPosters));
 });
+// Make a Poster Button//
 makePosterButton.addEventListener('click', function() {
   poster.classList.toggle('hidden');
   makePosterForm.classList.toggle('hidden');
 });
+//Show Saved Posters Button//
 showSavedButton.addEventListener('click', function() {
   poster.classList.toggle('hidden');
   showSavedPosters.classList.remove('hidden');
   displaySavedPosters();
 });
+//Nevermind Button//
 neverMindMain.addEventListener('click', function() {
   poster.classList.toggle('hidden');
   makePosterForm.classList.toggle('hidden');
 });
+//Back to Main Buttons//
 backToMain.addEventListener('click', function() {
   poster.classList.toggle('hidden');
   showSavedPosters.classList.toggle('hidden');
@@ -277,6 +288,7 @@ backToMainUnmotivational.addEventListener('click', function() {
   poster.classList.toggle('hidden');
   unmotivationalPostersGrid.classList.toggle('hidden');
 });
+//Make Your Own Poster Button and Form//
 showPosterButton.addEventListener('click', function(event){
   event.preventDefault();
   currentPoster = createPoster(showPosterURL.value, showPosterTitle.value, showPosterQuote.value);
@@ -292,10 +304,17 @@ showPosterButton.addEventListener('click', function(event){
   poster.classList.remove('hidden');
   makePosterForm.classList.add('hidden');
 });
+// Save Poster Button and Function//
 savePosterButton.addEventListener('click', function(){
   saveCurrentPoster();
 });
-// #Functions and Event Handlers!//
+// Double-click Mini Un-Motivational Poster//
+deleteUnMotivationalPoster.addEventListener('dblclick', function(event) {
+  deletePoster(event);
+});
+
+// ~~~~~Functions~~~~~//
+
 function getRandomIndex(array) {
   return Math.floor(Math.random() * array.length);
 };
@@ -363,3 +382,17 @@ function displayUnmotivationalPosters(cleanedPosters) {
     unmotivationalContainer.appendChild(miniPoster)
   });
 };
+function deletePoster(event) {
+  deleteUnMotivationalPoster = document.querySelectorAll('.mini-unmotivational-poster')
+  event.forEach(function(poster){
+    var deleteThis = document.splice(0, 1)
+  })
+}
+// gotta delete div.mini-unmotivational-poster
+// create an eventListener for the double click...
+// create a querySelector for that element...
+// create a function that deletes it from the array and removes it, then re-renders the updated DOM
+
+// From the unmotivational posters view, if a user double clicks a poster, it will be deleted
+// HTML onclick attributes should not be used in any HTML code - all functionality should be through JavaScript.
+// The poster should be removed from the unmotivational posters data set and should no longer be displayed on the DOM.
