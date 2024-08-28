@@ -309,7 +309,9 @@ savePosterButton.addEventListener('click', function(){
   saveCurrentPoster();
 });
 // Double-click Mini Un-Motivational Poster//
-deleteUnMotivationalPoster.addEventListener('dblclick', function())
+deleteUnMotivationalPoster.addEventListener('dblclick', function(event) {
+  deletePoster(event);
+});
 
 // ~~~~~Functions~~~~~//
 
@@ -380,6 +382,12 @@ function displayUnmotivationalPosters(cleanedPosters) {
     unmotivationalContainer.appendChild(miniPoster)
   });
 };
+function deletePoster(event) {
+  deleteUnMotivationalPoster = document.querySelectorAll('.mini-unmotivational-poster')
+  event.forEach(function(poster){
+    var deleteThis = document.splice(0, 1)
+  })
+}
 // gotta delete div.mini-unmotivational-poster
 // create an eventListener for the double click...
 // create a querySelector for that element...
